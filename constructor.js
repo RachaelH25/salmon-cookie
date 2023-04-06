@@ -2,52 +2,30 @@
 
 const hours = ["6am", "7am", "8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm"];
 
-// const seattle = {
-//     location: "seattle",
-//     minCustPerHour: 23,
-//     maxCustPerHour: 65,
-//     avgCookies: 6.3,
-//     customersPerHour: [],
-//     cookiesPerHour: [],
-//     totalDailyCookies: 0,
-//     calcCustomersPerHour: function () {
-//         for (let i = 0; i < hours.length; i++) {
-//             this.customersPerHour.push(random(this.minCustPerHour, this.maxCustPerHour));
-//         }
-//     },
-//     calcCookiesPerHour: function () {
-//         for (let i = 0; i < hours.length; i++) {
-//             const oneHour = Math.ceil(this.customersPerHour[i] * this.avgCookies);
-//             this.cookiesPerHour.push(oneHour);
-//             this.totalDailyCookies += oneHour;
-//         }
-//     },
-//     render() {
-//         this.calcCustomersPerHour();
-//         this.calcCookiesPerHour();
-//         const unorderedList = document.getElementById("seattle");
-//         for (let i = 0; i < hours.length; i++) {
-//             const listItem = document.createElement("li");
-//             listItem.textContent = hours[i] + ": " + this.cookiesPerHour[i] + " cookies";
-//             unorderedList.appendChild(listItem);
-//         }
-//     },
-// };
-
-// seattle.render();
+// state describes the status of the entire program or an individual object. Common tool for co-ordinating code.
+const state = {
+    allCookieStands: [],
+};
 
 function SalmonCookie(location, minCustPerHour, maxCustPerHour, avgCookies) {
     this.location = location;
     this.minCustPerHour = minCustPerHour;
     this.maxCustPerHour = maxCustPerHour;
     this.avgCookies = avgCookies;
-    this.customersPerHour = customersPerHour;
-    this.cookiesPerHour = cookiesPerHour;
+    this.customersPerHour = [];
+    this.cookiesPerHour = [];
+    this.totalDailyCookies = 0;
 }
+// this. refers to objects we are creating. this. keyword allows objects to have properties in constructor functions.
+// values for customersPerHour and cookiesPerHour are empty above but will be decided in following functions.
 
 SalmonCookie.prototype.calcCustomersPerHour = function () {
-    return Math.floor(Math.random() * (this.maxCustPerHour - this.minCustPerHour + 1) + min);
+    for (let i = 0; i < hours.length; i++) {
+        this.customersPerHour.push(random(this.minCustPerHour, this.maxCustPerHour));
+    }
 };
+// JS prototype property allows you to add new properties to object constructors.
+// when index is lower than the amount of items in the hours array add one to the number. Customers per hour calculated by random number between the minimum number of customers per hour and the maximum.
 
 SalmonCookie.prototype.calcCookiesPerHour = function () {
     for (let i = 0; i < hours.length; i++) {
@@ -57,134 +35,63 @@ SalmonCookie.prototype.calcCookiesPerHour = function () {
     }
 };
 
+// oneHour customersPerHour multiplied by average cookies, rounded up via Math.ceil.
+// push() adds oneHour to the end of an array.
+// += addition assignment operator performs addition on the two operands and assigns the result to the left operand. total cookies + the value of oneHour added back to the total of total cookies. [x += y] [x= x + y]
+
 SalmonCookie.prototype.render = function () {
-    const containerElem = document.getElementId("main-container");
-    const articleElem = document.createElement("article");
-    containerElem.appendChild(articleElem);
-    const headingElem = document.createElement("h2");
-    articleElem.appendChild(headingElem);
-    headingElem.textContent = this.location;
-    const paraElem = document.createElement("p");
-    articleElem.appendChild(paraElem);
-    paraElem.textContent = `${this.location} ...`;
-
-    const tableElem = document.createElement("table");
-    articleElem.appendChild(tableElem);
-    const headerRow = document.createElement("tr");
-    tableElem.appendChild(headerRow);
-
-    // const sixHeaderCell = document.createElement("th");
-    // headerRow.appendChild(sixHeaderCell);
-    // sixHeaderCell.textContent = "6am";
-
-    // const sevenHeaderCell = document.createElement("th");
-    // headerRow.appendChild(sevenHeaderCell);
-    // sevenHeaderCell.textContent = "7am";
-
-    // const eightHeaderCell = document.createElement("th");
-    // headerRow.appendChild(eightHeaderCell);
-    // eightHeaderCell.textContent = "8am";
-
-    // const nineHeaderCell = document.createElement("th");
-    // headerRow.appendChild(nineHeaderCell);
-    // nineHeaderCell.textContent = "9am";
-
-    // const tenHeaderCell = document.createElement("th");
-    // headerRow.appendChild(tenHeaderCell);
-    // tenHeaderCell.textContent = "10am";
-
-    // const elevenHeaderCell = document.createElement("th");
-    // headerRow.appendChild(elevenHeaderCell);
-    // elevenHeaderCell.textContent = "11am";
-
-    // const twelveHeaderCell = document.createElement("th");
-    // headerRow.appendChild(twelveHeaderCell);
-    // twelveHeaderCell.textContent = "12pm";
-
-    // const oneHeaderCell = document.createElement("th");
-    // headerRow.appendChild(oneHeaderCell);
-    // oneHeaderCell.textContent = "1pm";
-
-    // const twoHeaderCell = document.createElement("th");
-    // headerRow.appendChild(twoHeaderCell);
-    // twoHeaderCell.textContent = "2pm";
-
-    // const threeHeaderCell = document.createElement("th");
-    // headerRow.appendChild(threeHeaderCell);
-    // threeHeaderCell.textContent = "3pm";
-
-    // const fourHeaderCell = document.createElement("th");
-    // headerRow.appendChild(fourHeaderCell);
-    // fourHeaderCell.textContent = "4pm";
-
-    // const fiveHeaderCell = document.createElement("th");
-    // headerRow.appendChild(fiveHeaderCell);
-    // fiveHeaderCell.textContent = "5pm";
-
-    // const sixpmHeaderCell = document.createElement("th");
-    // headerRow.appendChild(sixpmHeaderCell);
-    // sixpmHeaderCell.textContent = "6pm";
-
-    // const sevenpmHeaderCell = document.createElement("th");
-    // headerRow.appendChild(sevenpmHeaderCell);
-    // sevenpmHeaderCell.textContent = "7pm";
-
-    const seattleHeaderCell = document.createElement("th");
-    headerRow.appendChild(seattleHeaderCell);
-    seattleHeaderCell.textContent = "Seattle";
-
-    const tokyoHeaderCell = document.createElement("th");
-    headerRow.appendChild(tokyoHeaderCell);
-    tokyoHeaderCell.textContent = "Tokyo";
-
-    const dubaiHeaderCell = document.createElement("th");
-    headerRow.appendChild(dubaiHeaderCell);
-    dubaiHeaderCell.textContent = "Dubai";
-
-    const parisHeaderCell = document.createElement("th");
-    headerRow.appendChild(parisHeaderCell);
-    parisHeaderCell.textContent = "Paris";
-
-    const limaHeaderCell = document.createElement("th");
-    headerRow.appendChild(limaHeaderCell);
-    limaHeaderCell.textContent = "Lima";
-
-    const dataRow = document.createElement("tr");
-    tableElem.appendChild(dataRow);
-
-    const seattleDataCell = document.createElement("td");
-    dataRow.appendChild(seattleDataCell);
-    seattleDataCell.textContent = this.cookiesPerHour;
-
-    const tokyoDataCell = document.createElement("td");
-    dataRow.appendChild(tokyoDataCell);
-    tokyoDataCell.textcontent = this.cookiesPerHour;
-
-    const dubaiDataCell = document.createElement("td");
-    dataRow.appendChild(dubaiDataCell);
-    dubaiDataCell.textcontent = this.cookiesPerHour;
-
-    const parisDataCell = document.createElement("td");
-    dataRow.appendChild(parisDataCell);
-    parisDataCell.textcontent = this.cookiesPerHour;
-
-    const limaDataCell = document.createElement("td");
-    dataRow.appendChild(limaDataCell);
-    limaDataCell.textcontent = this.cookiesPerHour;
+    this.calcCustomersPerHour();
+    this.calcCookiesPerHour();
+    const tableRow = document.createElement("tr");
+    let tableDataElement = document.createElement("td");
+    tableDataElement.textContent = this.location;
+    tableRow.appendChild(tableDataElement);
+    for (let i = 0; i < hours.length; i++) {
+        tableDataElement = document.createElement("td");
+        tableDataElement.textContent = this.cookiesPerHour[i];
+        tableRow.appendChild(tableDataElement);
+    }
+    const tableHeader = document.createElement("th");
+    tableHeader.textContent = this.totalDailyCookies;
+    tableRow.appendChild(tableHeader);
+    tableElement.appendChild(tableRow);
 };
+// calls functions calcCustomersPerHour and calcCookiesPerHour.
+// creates and renders the elements for the table. creates table row tr and data element td. Adds location name to the first  element of the table row. Then loops through adding the cookies per hour to each of the data elements for the hours in the original array.
 
-const seattle = new SalmonCookie("Seattle", 23, 65, 6.3);
+let seattle = new SalmonCookie("Seattle", 23, 65, 6.3);
 
-const tokyo = new SalmonCookie("Tokyo", 3, 24, 1.2);
+let tokyo = new SalmonCookie("Tokyo", 3, 24, 1.2);
 
-const dubai = new SalmonCookie("Dubai", 11, 38, 2.3);
+let dubai = new SalmonCookie("Dubai", 11, 38, 2.3);
 
-const paris = new SalmonCookie("Paris", 20, 38, 2.3);
+let paris = new SalmonCookie("Paris", 20, 38, 2.3);
 
-const lima = new SalmonCookie("Lima", 2, 16, 4.6);
+let lima = new SalmonCookie("Lima", 2, 16, 4.6);
+// create new interations of the constructor function for each of the store locations. Values in brackets match the properties in the brackets of the SalmonCookie constructor function at the start of the code.
 
-seattle.render();
-tokyo.render();
-dubai.render();
-paris.render();
-lima.render();
+state.allCookieStands.push(seattle, tokyo, dubai, paris, lima);
+// pushes each of the variables for store locations.
+
+function random(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+// returns random number between 0 and 0.1 multiplied by the max number minus the minimum plus one then add the minimum number to the total to create the random number.
+// This function applies to all instances where 'random' is used to generate a number within the constructor functions.
+
+function makeHeaderRow() {
+    const tableRow = document.createElement("tr");
+    let tableHeader = document.createElement("th");
+    tableHeader.textContent = "Locations";
+    tableRow.appendChild(tableHeader);
+    for (let i = 0; i < hours.length; i++) {
+        tableHeader = document.createElement("th");
+        tableHeader.textContent = hours[i];
+        tableRow.appendChild(tableHeader);
+    }
+    tableHeader = document.createElement("th");
+    tableHeader.textContent = "Location Totals";
+    tableRow.appendChild(tableHeader);
+    tableElement.appendChild(tableRow);
+}
+// NEED TO CONTINUE WITH THE REST OF THE TABLE CODE
